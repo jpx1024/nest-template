@@ -9,8 +9,5 @@ async function bootstrap() {
 
 	let port = configService.get("PORT");
 	await app.listen(port);
-	console.log(process.env)
-	console.log("服务正在监听端口<" + port + ">");
-	
 }
 bootstrap();
