@@ -5,3 +5,6 @@ nest:
     database: demo
     username: root
     password: Jpx740850960
+  typeorm:
+    synchronize: true
+    logging: true

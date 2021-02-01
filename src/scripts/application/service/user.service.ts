@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { Paginated } from "src/scripts/common/paginated";
 
 import { UserPO } from "../../infrastructure/database/pojo/user.po";
 import { UserRepository } from "../../infrastructure/database/repository/user.repository";
@@ -14,10 +15,18 @@ export class UserService {
         private userRepository: UserRepository,
     ) { }
 
-    async getList(): Promise<UserPO[]> {
-        return await this.userRepository.find();
+    /**
+     * 获取分页
+     */
+    async getPaginated(): Promise<Paginated<UserPO>> {
+        let result = await this.userRepository.findAndCount();
+        return Paginated.of(result);
     }
 
+    /**
+     * 创建
+     * @param dto 数据传输对象
+     */
     async create(dto: UserCreateDTO): Promise<any> {
         let po = new UserPO();
         po = Object.assign(po, dto)
@@ -25,6 +34,10 @@ export class UserService {
         await this.userRepository.save(po);
     }
 
+    /**
+     * 更新
+     * @param dto 数据传输对象
+     */
     async update(dto: UserUpdateDTO): Promise<any> {
         let po = new UserPO();
         po = Object.assign(po, dto)

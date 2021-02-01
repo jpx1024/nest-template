@@ -1,4 +1,7 @@
+import { Paginated } from "./paginated";
 
+const DEFAULT_CODE = "SUCCESS"
+const DEFAULT_MESSAGE = "成功"
 /**
  * 响应
  * @author ike jpx1024@gmail.com
@@ -21,7 +24,7 @@ export class Response {
      */
     static buildSuccess(): Response {
         let response = new Response();
-        response.code = "success"
+        response.code = DEFAULT_CODE
         return response;
     }
     
@@ -61,10 +64,23 @@ export class MultiResponse<T> extends Response {
      */
     static of<T>(data: Array<T>, total: number): MultiResponse<T>{
         let multiResponse = new MultiResponse<T>();
-        multiResponse.code = "success";
-        multiResponse.message = "";
+        multiResponse.code = DEFAULT_CODE;
+        multiResponse.message = DEFAULT_MESSAGE;
         multiResponse.data = data;
         multiResponse.total = total;
+        return multiResponse;
+    }
+
+    /**
+     * 构建分页
+     * @param Paginated<T> 分页
+     */
+    static ofPaginated<T>(paginated: Paginated<T>): MultiResponse<T>{
+        let multiResponse = new MultiResponse<T>();
+        multiResponse.code = DEFAULT_CODE;
+        multiResponse.message = DEFAULT_MESSAGE;
+        multiResponse.data = paginated.data;
+        multiResponse.total = paginated.total;
         return multiResponse;
     }
 
@@ -78,7 +94,7 @@ export class MultiResponse<T> extends Response {
 
     static buildSuccess<T>(): MultiResponse<T> {
         let multiResponse = new MultiResponse<T>();
-        multiResponse.code = "success";
+        multiResponse.code = DEFAULT_CODE;
         return multiResponse;
     }
 
@@ -110,8 +126,8 @@ export class SingleResponse<T> extends Response {
      */
     static of<T>(data: T): SingleResponse<T>{
         let singleResponse = new SingleResponse<T>();
-        singleResponse.code = "success";
-        singleResponse.message = "";
+        singleResponse.code = DEFAULT_CODE;
+        singleResponse.message = DEFAULT_MESSAGE;
         singleResponse.data = data;
         return singleResponse;
     }
@@ -122,7 +138,7 @@ export class SingleResponse<T> extends Response {
      */
     static buildSuccess<T>(): SingleResponse<T> {
         let singleResponse = new SingleResponse<T>();
-        singleResponse.code = "success";
+        singleResponse.code = DEFAULT_CODE;
         return singleResponse;
     }
 

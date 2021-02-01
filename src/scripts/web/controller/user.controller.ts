@@ -19,8 +19,8 @@ export class UserController {
      */
     @Get("list")
     async getList(): Promise<MultiResponse<UserPO>> {
-        let data = await this.userService.getList();
-        return MultiResponse.of(data, await this.userService.count());
+        let paginated = await this.userService.getPaginated();
+        return MultiResponse.ofPaginated(paginated);
     }
     
     /**
