@@ -4,10 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import configuration from './configuration';
 import { TypeOrmConfig } from './scripts/config/typeorm.config';
-import { UserService } from './scripts/service/user.service';
-import { BaseController } from './scripts/controller/base.controller';
-import { UserController } from './scripts/controller/user.controller';
-import { UserE } from './scripts/entity/user.entity';
+import { UserService } from './scripts/application/service/user.service';
+import { BaseController } from './scripts/web/controller/base.controller';
+import { UserController } from './scripts/web/controller/user.controller';
+import { UserRepository } from './scripts/infrastructure/database/repository/user.repository';
 
 
 @Module({
@@ -21,7 +21,7 @@ import { UserE } from './scripts/entity/user.entity';
 			useClass: TypeOrmConfig
 		}),
 
-		TypeOrmModule.forFeature([UserE])
+		TypeOrmModule.forFeature([UserRepository])
 	],
 	providers: [
 		UserService

@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
-import { Response } from '../response';
+import { Response } from '../../common/response';
 
 @Controller()
 export class BaseController {

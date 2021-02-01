@@ -14,7 +14,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
             username: this.configService.get("nest.datasource.username"),
             password: this.configService.get<string>("nest.datasource.password"),
             database: this.configService.get("nest.datasource.database"),
-            entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+            entities: [__dirname + '/../**/*.po{.ts,.js}'],
             synchronize: true,
         };
     }
