@@ -9,7 +9,6 @@ async function bootstrap() {
 
 	let port = configService.get("server.port");
 	await app.listen(port);
-	console.log(configService)
 	console.log("服务正在监听端口<" + port + ">");
 	
 }

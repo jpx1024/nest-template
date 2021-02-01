@@ -1,5 +1,7 @@
 nest:
-  application:
-    datasource:
-      username: master
-      password: 123456
+  datasource: 
+    host: 192.168.148.132
+    port: 3306
+    database: demo
+    username: root
+    password: Jpx740850960
