@@ -13,4 +13,8 @@ export class MultiResponse<T> extends Response {
         multiResponse.total = total;
         return multiResponse;
     }
+
+    static ofWithoutTotal<T>(data: Array<T>): MultiResponse<T>{
+        return this.of(data, 0);
+    }
 }

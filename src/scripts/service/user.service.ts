@@ -28,4 +28,8 @@ export class UserService {
     remove(userE: UserE): any {
         
     }
+
+    async count(): Promise<number> {
+        return await this.userRepository.count();
+    }
 }

@@ -13,7 +13,7 @@ export class UserController {
     @Get("list")
     async getList(): Promise<MultiResponse<UserE>> {
         let data = await this.userService.getList();
-        return MultiResponse.of(data, 0);
+        return MultiResponse.of(data, await this.userService.count());
     }
 
     @Post()
