@@ -1,0 +1,5 @@
+nest:
+  application:
+    datasource:
+      username: master
+      password: 123456

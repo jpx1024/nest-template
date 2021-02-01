@@ -1,5 +1,8 @@
 {
     "collection": "@nestjs/schematics",
     "sourceRoot": "src",
-    "assets": ["**/*.yml"]
+    "compilerOptions": {
+        "assets": [{ "include": "**/*.yml", "watchAssets": true }]
+    }
+
 }
