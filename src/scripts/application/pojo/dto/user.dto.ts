@@ -30,3 +30,11 @@ export class UserUpdateDTO{
     @IsNotEmpty()
     password: string;
 }
+
+export class UserLoginDTO{
+    @IsNotEmpty()
+    username: string;
+
+    @IsNotEmpty()
+    password: string;
+}

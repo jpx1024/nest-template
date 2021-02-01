@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 
-import { MultiResponse, Response } from '../../common/response';
+import { MultiResponse, SingleResponse, Response } from '../../common/response';
 import { UserService } from '../../application/service/user.service';
 import { UserPO } from '../../infrastructure/database/pojo/user.po';
-import { UserCreateDTO, UserUpdateDTO } from 'src/scripts/application/pojo/user.dto';
+import { UserLoginDTO, UserCreateDTO, UserUpdateDTO } from 'src/scripts/application/pojo/dto/user.dto';
 
 /**
  * 用户控制器
@@ -13,6 +13,15 @@ import { UserCreateDTO, UserUpdateDTO } from 'src/scripts/application/pojo/user.
 export class UserController {
 
     constructor(private userService: UserService){}
+
+    /**
+     * 登录
+     * @param dto 数据传输对象
+     */
+    @Post("login")
+    async login(@Body() dto: UserLoginDTO): Promise<SingleResponse<string>> {
+        return SingleResponse.buildSuccess();
+    }
 
     /**
      * 获取列表

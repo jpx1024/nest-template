@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { Paginated } from "src/scripts/common/paginated";
+import { JwtService } from "@nestjs/jwt";
 
+import { Paginated } from "src/scripts/common/paginated";
 import { UserPO } from "../../infrastructure/database/pojo/user.po";
 import { UserRepository } from "../../infrastructure/database/repository/user.repository";
-import { UserCreateDTO, UserUpdateDTO } from "../pojo/user.dto";
+import { UserCreateDTO, UserUpdateDTO } from "../pojo/dto/user.dto";
 
 /**
  * 用户服务
@@ -13,6 +14,7 @@ import { UserCreateDTO, UserUpdateDTO } from "../pojo/user.dto";
 export class UserService {
     constructor(
         private userRepository: UserRepository,
+        private jwtService: JwtService
     ) { }
 
     /**
