@@ -1,14 +1,10 @@
 import { JwtModuleOptions, JwtOptionsFactory } from "@nestjs/jwt";
+import { jwtConstants } from "../common/auth/constants";
 
-export class JwtConfig implements JwtOptionsFactory{
+export class JwtOptions implements JwtOptionsFactory{
 
     createJwtOptions(): JwtModuleOptions | Promise<JwtModuleOptions> {
-        return {
-            secret: "123456",
-            signOptions: {
-                expiresIn: "60s"
-            }
-        };
+        return jwtConstants;
     }
 
 }

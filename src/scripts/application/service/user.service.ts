@@ -4,7 +4,8 @@ import { JwtService } from "@nestjs/jwt";
 import { Paginated } from "src/scripts/common/paginated";
 import { UserPO } from "../../infrastructure/database/pojo/user.po";
 import { UserRepository } from "../../infrastructure/database/repository/user.repository";
-import { UserCreateDTO, UserUpdateDTO } from "../pojo/dto/user.dto";
+import { AuthDTO } from "../pojo/dto/auth.dto";
+import { UserCreateDTO, UserLoginDTO, UserUpdateDTO } from "../pojo/dto/user.dto";
 
 /**
  * 用户服务
@@ -16,6 +17,16 @@ export class UserService {
         private userRepository: UserRepository,
         private jwtService: JwtService
     ) { }
+    
+    /**
+     * 登录
+     * @param userLoginDto 用户登录数据传输对象
+     */
+    async login(userLoginDto: UserLoginDTO): Promise<AuthDTO>{
+        let authDto = new AuthDTO();
+        authDto.accessToken = this.jwtService.sign({ username: 'admin', sub: '1' })
+        return authDto;
+    }
 
     /**
      * 获取分页
