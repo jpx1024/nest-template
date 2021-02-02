@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { jwtConstants } from './constants';
+import { jwtConstants } from '../../common/constants';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -12,8 +12,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             secretOrKey: jwtConstants.secret,
         });
     }
-
+    /**
+     * 此函数是给框架调用，控制传入 request user 对象
+     * @param payload 载荷
+     */
     async validate(payload: any) {
-        return { userId: payload.sub, username: payload.username };
+        return { id: payload.id };
     }
 }

@@ -24,7 +24,12 @@ export class UserService {
      */
     async login(userLoginDto: UserLoginDTO): Promise<AuthDTO>{
         let authDto = new AuthDTO();
-        authDto.accessToken = this.jwtService.sign({ username: 'admin', sub: '1' })
+        let user = await this.userRepository.findOne({
+            where: {
+                username: userLoginDto.username
+            }
+        })
+        authDto.accessToken = this.jwtService.sign({ id: user.id, subject: "" })
         return authDto;
     }
 

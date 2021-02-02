@@ -8,12 +8,14 @@ import { APP_GUARD } from '@nestjs/core';
 import configuration from './configuration';
 import { TypeOrmOptions } from './scripts/config/typeorm.config';
 import { JwtOptions } from './scripts/config/jwt.config';
+import { JwtAuthGuard } from './scripts/web/guard/auth.guard';
+import { JwtStrategy } from './scripts/web/strategy/jwt.strategy';
+
+import { UserRepository } from './scripts/infrastructure/database/repository/user.repository';
 import { UserService } from './scripts/application/service/user.service';
 import { BaseController } from './scripts/web/controller/base.controller';
 import { UserController } from './scripts/web/controller/user.controller';
-import { UserRepository } from './scripts/infrastructure/database/repository/user.repository';
-import { JwtAuthGuard } from './scripts/web/guard/auth.guard';
-import { JwtStrategy } from './scripts/common/auth/jwt.strategy';
+
 
 @Module({
 	imports: [
@@ -30,6 +32,7 @@ import { JwtStrategy } from './scripts/common/auth/jwt.strategy';
 
 		PassportModule,
 		JwtModule.registerAsync({
+			imports: [ConfigModule],
 			useClass: JwtOptions
 		})
 	],

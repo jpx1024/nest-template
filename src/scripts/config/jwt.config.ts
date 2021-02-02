@@ -1,7 +1,11 @@
+import { Injectable } from "@nestjs/common";
 import { JwtModuleOptions, JwtOptionsFactory } from "@nestjs/jwt";
-import { jwtConstants } from "../common/auth/constants";
+import { jwtConstants } from "../common/constants";
 
-export class JwtOptions implements JwtOptionsFactory{
+@Injectable()
+export class JwtOptions implements JwtOptionsFactory {
+
+    constructor(){}
 
     createJwtOptions(): JwtModuleOptions | Promise<JwtModuleOptions> {
         return jwtConstants;
